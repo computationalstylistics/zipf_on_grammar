@@ -113,6 +113,17 @@ Piantadosi (2015) -->
 
 
 
+## Observations on Brown Corpus
+
+> [W]ord categories are also fit nicely [...] perhaps even more closely than words—but the shape of the fit [...] differs. 
+
+> The general pattern suggests that a full explanation of the word frequency distribution would ideally call on mechanisms general enough to apply to syntactic categories and possibly even other levels of analysis.
+
+(Piantadosi, 2014)
+
+
+
+
 
 
 ## Dataset
@@ -314,7 +325,7 @@ box()
 ## What is less Zipfian than general language?
 
 * Participles and subjects (nouns are also slightly different) – only 64–81% of their respective distributions.
-* Why? productivity of this type of forms might be the clue.
+* Why? Productivity of this type of forms might be the clue.
 
 
 
@@ -335,6 +346,13 @@ Stable, (un)expected Zipf results for both types and tokens:
 
 
 
+
+## Relation between $\alpha$ (scaling) and coverage?
+
+* Is there any relation between the parameter $\alpha$ (or slope of the model) and the number of observations above the $x_{min}$ cutoff point?
+* To address it, we modeled:
+  * the relation between $\alpha$ and the proportion of **tokens** $\geq x_{min}$
+  * the relation between $\alpha$ and the proportion of **types** $\geq x_{min}$
 
 
 
@@ -375,8 +393,10 @@ legend("bottomleft", bty = "n", legend = paste(expression(R^2), "(adjusted) =", 
 
 ## Conclusions
 
-* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+* Unzipped language categories do not necessarily follow a power law distribution
+* Productivity of a class responsible for a heavy tail
+* Classes of relatively low productivity (_voc_, _praep_) do follow Zipf’s law
+* The relation between $\alpha$ (the scaling parameter) and the proportion of a class following Zipf’s distribution worth further exploration.
 
 
 
