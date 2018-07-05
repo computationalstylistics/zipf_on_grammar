@@ -444,7 +444,7 @@ legend("bottomleft", bty = "n", legend = paste(expression(R^2), "(adjusted) =", 
 ## Conclusions
 
 * Unzipped language categories do not necessarily follow a power law distribution
-* Productivity of a class responsible for a heavy tail
+* Productivity of a class seems to be responsible for a heavy tail
 * Classes of relatively low productivity (_voc_, _praep_) do follow Zipf’s law
 * The relation between $\alpha$ (the scaling parameter) and the proportion of a class following Zipf’s distribution worth further exploration.
 
