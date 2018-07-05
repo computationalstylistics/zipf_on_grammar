@@ -1,7 +1,7 @@
 
 ---
 title: Zipf’s Law and Subsets of Lexis
-author: 8ł L. Górski, Joanna Byszuk
+author: Maciej Eder, Rafał L. Górski, Joanna Byszuk
 date: July 5, 2018
 output:
   rmdshower::shower_presentation:
@@ -10,8 +10,8 @@ output:
     center: true
     ratio: 4x3
     katex: true
-    fig_width: 9
-    fig_height: 6
+    fig_width: 8.5
+    fig_height: 5.5
 ---
 
 
@@ -322,10 +322,60 @@ box()
 * We compared the proportion of observations above $x_{min}$
 
 
-## What is less Zipfian than general language?
 
-* Participles and subjects (nouns are also slightly different) – only 64–81% of their respective distributions.
-* Why? Productivity of this type of forms might be the clue.
+
+
+
+
+
+## What is perfectly Zipfian?
+
+Prepositions and conjuctions:
+
+| POS   | Occurrences | $\alpha$ | ZTypes | ZTokens |
+|:-----:|:----------:|:---------:|:------:|:-------:|
+| prep  | 28,787,398 | 1.14      | 97.9%  | 99.99%  |      
+| conj  | 10,455,657 | 1.21      | 81.03% | 99.99%  |      
+| comp  | 4,145,149  | 1.2       | 87.23% | 99.99%  |        
+
+* Short, closed classes
+* Non-Zipfian elements include archaic vocabulary, present but underrepresented in relation to the whole corpus.
+
+
+
+
+
+
+## What is least Zipfian?
+
+Participles:
+
+| POS   | Occurrences | $\alpha$ | ZTypes | ZTokens |
+|:-----:|:----------:|:---------:|:------:|:-------:|
+| praet | 11,995,036 | 1.97      | 5.12%  | 81.23%  |         
+| pant  | 35,235     | 2.05      | 14.54% | 79.09%  |         
+| ppas  | 3,187,531  | 2.24      | 4.62%  | 68.1%   |        
+| pact  | 1,209,948  | 2.25      | 3.5%   | 65.32%  |         
+| pcon  | 662,548    | 2.3       | 4.5%   | 64.38%  | 
+
+* Why? They’re very productive!
+
+
+
+
+      
+## Major parts of speech
+
+* Subject and verb:
+  * Tokens - over 99% and 95% respectively
+  * Types - both only 17%
+* Adjectives and adverbs:
+  * Tokens - 94% and 98%
+  * Types - 10% and 18%
+
+
+
+
 
 
 
@@ -333,15 +383,15 @@ box()
 
 Stable, (un)expected Zipf results for both types and tokens:
 
-| Case | token | type |
-|:----:|:-----:|:----:|
-| acc  | 98%   | 18%  |
-| voc  | 95.5% | 10%  |
-| dat  | 93%   | 7%   |
-| loc  | 91%   | 3.5% |
-| gen  | 88%   | 7%   |
-| inst | 75%   | 2.5%  |
-| nom  | 65%   | 2.5%  |
+| Case | ZTypes | ZTokens |
+|:----:|:------:|:-------:|
+| acc  | 98%    | 18%     |
+| voc  | 95.5%  | 10%     |
+| dat  | 93%    | 7%      |
+| loc  | 91%    | 3.5%    |
+| gen  | 88%    | 7%      |
+| inst | 75%    | 2.5%    |
+| nom  | 65%    | 2.5%    |
 
 
 
