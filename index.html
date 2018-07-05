@@ -88,13 +88,31 @@
 
   <header class="caption">
     <h1>Zipf’s Law and Subsets of Lexis</h1>
-    <p>Maciej Eder, Rafał L. Górski, Joanna Byszuk</p>
+    <p>8ł L. Górski, Joanna Byszuk</p>
   </header>
 
   
   
-<section id="zipfs-law-and-subsets-of-lexis" class="title-slide slide level1"><h1>Zipf’s law and subsets of lexis</h1></section><section id="zipfs-law-observed-for-language" class="slide level2">
-<h2>Zipf’s law observed for language</h2>
+<section id="section" class="slide level2 white">
+<h2></h2>
+<p class="black" style="font-size: 240%; margin-bottom: 0.5em; margin-top: 0.5em;">
+Zipf’s Law and Subsets of Lexis
+</p>
+<p class="black" style="font-size: 120%; margin-bottom: 1em">
+Maciej Eder, Rafał L. Górski, Joanna Byszuk
+</p>
+<p class="black" style="font-size: 80%; margin-bottom: 0.5em;">
+Institute of Polish Language (Polish Academy of Sciences)
+</p>
+<p>
+<img src="img/logo_ijp_1.png" width="200px">
+</p>
+<p class="black" style="font-size: 100%; margin-top: 4em;">
+Qualico 2018, Wrocław, 5th July 2018
+</p>
+</section>
+<section id="zipfs-law-and-language" class="slide level2">
+<h2>Zipf’s law and language</h2>
 <!-- 
 * Zauważono, że język jest zipfowski
     * Ale co to znaczy “język”?
@@ -113,68 +131,111 @@ Piantadosi (2015) -->
 <li>unigrams or also n-grams?</li>
 </ul></li>
 </ul>
-</section><section id="section" class="slide level2">
+</section>
+<section id="section-1" class="slide level2">
 <h2></h2>
 <p><img src="img/qSUgV.jpg" alt="qSUgV" width="700" /></p>
-</section><section id="zipfs-law-an-example" class="slide level2">
-<h2>Zipf’s Law: an example</h2>
+</section>
+<section id="zipfs-law-on-a-log-log-scale" class="slide level2">
+<h2>Zipf’s Law on a log-log scale</h2>
 <p><img src="img/jeden_count.png" alt="word_unigrams" width="800" /></p>
-</section><section id="research-question" class="slide level2">
+</section>
+<section id="research-question" class="slide level2">
 <h2>Research question</h2>
 <ul>
 <li>If the distribution of all the words in the corpus is Zipfian, is the distribution of <strong>a subset of these words</strong> also Zipfian?</li>
 <li>Since a text is a sum of nouns, verbs, adjectives, prepositions etc., is the distribution of <strong>particular classes</strong> (nouns, verbs etc.) also Zipfian?</li>
 </ul>
-</section><section id="dataset" class="slide level2">
+</section>
+<section id="dataset" class="slide level2">
 <h2>Dataset</h2>
 <ul>
 <li>The balanced version of the National Corpus of Polish
 <ul>
 <li>300 mln segments, i.e. roughly 250 mln words.</li>
 </ul></li>
-<li>The POS tags in Polish are very granular.</li>
-<li>However, there are two “hyper POS-tags”:
-<ul>
-<li><em>Verb</em>: all traditional verbal classes</li>
-<li><em>Noun</em>: nouns, gerunds, and pronouns</li>
-</ul></li>
+<li>The POS tags and lemmata taken as they are.</li>
 </ul>
-</section><section id="first-observations-sg-vs.-pl" class="slide level2">
-<h2>First observations: <em>sg</em> vs. <em>pl</em></h2>
+</section>
+<section id="categories" class="slide level2">
+<h2>Categories</h2>
+<ul>
+<li>Very granular parts of speech in the National Corpus of Polish.
+<ul>
+<li>e.g. <em>subst:sg:nom:m1</em>, <em>adj:sg:nom:n:pos</em>, etc.</li>
+</ul></li>
+<li>For that reason, we split the tags:
+<ul>
+<li>the proper POS: <em>subst</em>, <em>adj</em>, <em>fin</em>, <em>prep</em>, …</li>
+<li>the number: <em>sg</em>, <em>pl</em></li>
+<li>the case: <em>nom</em>, <em>gen</em>, <em>dat</em>, …</li>
+<li>the person: <em>1st</em>, <em>2nd</em>, <em>3rd</em> (not included in a tag)</li>
+</ul></li>
+<li>Independently, we tested POS-tag n-grams</li>
+</ul>
+<!-- * However, there are two “hyper POS-tages”:
+  * _Verb_: all traditional verbal classes
+  * _Noun_: nouns, gerunds, and pronouns -->
+<!-- a POS pcon - is one of 4 Polish participles, a rule of thumb: a Part of Speech is a class, which shares exactly the same set of “Grammatical classes used in the National Corpus of Polish are more precisely delimited and, overall, finer-grained than traditional parts of speech. The classes assumed here are based on the notion of flexeme, narrower than the notion of lexeme. As a rule of thumb: a grammatical class is an entity, which shares a same set of inflecting categories, eg. since present-tense verbs bear person, but not gender and past-tense verbs vice-versa, they are distinct parts of speech-->
+</section>
+<section id="first-observations-singular-vs.-plural" class="slide level2">
+<h2>First observations: <em>singular</em> vs. <em>plural</em></h2>
 <p><img src="img/sing_plur.png" alt="singular_plural" width="800" /></p>
-</section><section id="first-observations-1st-2nd-3rd-person" class="slide level2">
-<h2>First observations: <em>1st</em>, <em>2nd</em>, <em>3rd</em> person</h2>
+</section>
+<section id="first-observations-1st-2nd-3rd-person" class="slide level2">
+<h2>First observations: <em>1st</em>, <em>2nd</em>, <em>3rd person</em></h2>
 <p><img src="img/1os_2os.png" alt="1st_2nd_person" width="800" /></p>
-</section><section id="first-observations-cases" class="slide level2">
+</section>
+<section id="first-observations-cases" class="slide level2">
 <h2>First observations: <em>cases</em></h2>
 <p><img src="img/cases.png" alt="cases" width="800" /></p>
-</section><section id="first-observations-pos-tag-ngrams" class="slide level2">
+</section>
+<section id="first-observations-pos-tag-ngrams" class="slide level2">
 <h2>First observations: <em>POS-tag ngrams</em></h2>
 <p><img src="img/ngrams.png" alt="ngrams" width="800" /></p>
-</section><section id="modeling-a-power-law-distribution" class="slide level2">
+</section>
+<section id="modeling-a-power-law-distribution" class="slide level2">
 <h2>Modeling a power law distribution</h2>
-<p>Maybe a well-known linear regression:</p>
+<ul>
+<li>Since linear regression is simple to apply:</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">model =<span class="st"> </span><span class="kw">lm</span>( var_frequency <span class="op">~</span><span class="st"> </span>var_rank )</a></code></pre></div>
-<p>could be applied to a log-transformed dataset?</p>
+<ul>
+<li>Maybe it could be applied to a log-transformed dataset?</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">model =<span class="st"> </span><span class="kw">lm</span>( <span class="kw">log</span>(var_frequency) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(var_rank) )</a></code></pre></div>
-</section><section id="linear-regression-on-log-log-data" class="slide level2">
+</section>
+<section id="linear-regression-on-log-log-data" class="slide level2">
 <h2>Linear regression on log-log data</h2>
 <blockquote>
 <p>If in so doing one discovers a distribution that approximately falls on a straight line, then one can, <strong>if one is feeling particularly bold</strong>, assert that the distribution follows a power law, with a scaling parameter α given by the absolute slope of the straight line.</p>
 </blockquote>
 <p>(Clauset et al., 2009)</p>
-</section><section id="fitting-a-power-law" class="slide level2">
+</section>
+<section id="fitting-a-power-law" class="slide level2">
 <h2>Fitting a power law</h2>
-<p>Maximum likelihood estimators (MLEs) for continuous datasets</p>
+<ul>
+<li>Maximum likelihood estimators (MLEs) for continuous datasets</li>
+</ul>
 <p><span class="math display">\[ \alpha = 1 + n \Big[ \sum_{i=1}^{n} \ln \frac{x_i}{x_{min}} \Big] ^{-1} \]</span></p>
-<p>MLEs for discrete datasets:</p>
+<ul>
+<li>MLEs for discrete datasets:</li>
+</ul>
 <p><span class="math display">\[ \alpha \simeq 1 + n \Big[ \sum_{i=1}^{n} \ln \frac{x_i}{x_{min} - \frac{1}{2}} \Big] ^{-1} \]</span></p>
-<p><span class="math inline">\(x_{min}\)</span> is estimated using the Kolmogorov-Smirnov (KS) statistic:</p>
+<ul>
+<li><span class="math inline">\(x_{min}\)</span> is estimated using the Kolmogorov-Smirnov (KS) statistic:</li>
+</ul>
 <p><span class="math display">\[ D = \max_{x \geq x_{min}} | S(x) - P(x) |  \]</span></p>
-</section><section id="fitted-parameters-for-the-entire-corpus" class="slide level2">
-<h2>Fitted parameters for the entire corpus</h2>
+</section>
+<section id="fitted-parameters-x_min-cutoff" class="slide level2">
+<h2>Fitted parameters: <span class="math inline">\(x_{min}\)</span> (cutoff)</h2>
 <p><img src="Zipf_Qualico2018_files/figure-revealjs/unnamed-chunk-4-1.png" width="864" /></p>
-</section><section id="results" class="slide level2">
+</section>
+<section id="fitted-parameters-alpha-scaling" class="slide level2">
+<h2>Fitted parameters: <span class="math inline">\(\alpha\)</span> (scaling)</h2>
+<p><img src="Zipf_Qualico2018_files/figure-revealjs/unnamed-chunk-5-1.png" width="864" /></p>
+</section>
+<section id="results" class="slide level2">
 <h2>Results</h2>
 <ul>
 <li>We fitted power law parameters for different categories:
@@ -183,12 +244,20 @@ Piantadosi (2015) -->
 <li>inflection categories (cases, persons, numbers)</li>
 <li>POS-tags combined in 2-grams, 3-grams, …, 8-grams</li>
 </ul></li>
-<li>We compared <span class="math inline">\(\alpha\)</span> (the slope) of the estimated models</li>
+<li>We compared <span class="math inline">\(\alpha\)</span> (scaling) of the estimated models</li>
 <li>We compared the proportion of observations above <span class="math inline">\(x_{min}\)</span></li>
 </ul>
-</section><section id="cases" class="slide level2">
+</section>
+<section id="what-is-less-zipfian-than-general-language" class="slide level2">
+<h2>What is less Zipfian than general language?</h2>
+<ul>
+<li>Participles and subjects (nouns are also slightly different) – only 64–81% of their respective distributions.</li>
+<li>Why? productivity of this type of forms might be the clue.</li>
+</ul>
+</section>
+<section id="cases" class="slide level2">
 <h2>Cases</h2>
-<p>Stable, (un)expected Zipf results for both types and tokens</p>
+<p>Stable, (un)expected Zipf results for both types and tokens:</p>
 <table>
 <thead>
 <tr class="header">
@@ -226,24 +295,31 @@ Piantadosi (2015) -->
 <tr class="even">
 <td style="text-align: center;">inst</td>
 <td style="text-align: center;">75%</td>
-<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">2.5%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">nom</td>
 <td style="text-align: center;">65%</td>
-<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">2.5%</td>
 </tr>
 </tbody>
 </table>
-</section><section id="parameter-alpha-vs.-of-zipfian-tokens" class="slide level2">
-<h2>Parameter <span class="math inline">\(\alpha\)</span> vs. % of Zipfian tokens</h2>
-<p><img src="Zipf_Qualico2018_files/figure-revealjs/unnamed-chunk-5-1.png" width="864" /></p>
-</section><section id="parameter-alpha-vs.-of-zipfian-types" class="slide level2">
-<h2>Parameter <span class="math inline">\(\alpha\)</span> vs. % of Zipfian types</h2>
+</section>
+<section id="parameter-alpha-vs.-sqrt-of-zipfian-tokens" class="slide level2">
+<h2>Parameter <span class="math inline">\(\alpha\)</span> vs. <span class="math inline">\(\sqrt{\%}\)</span> of Zipfian tokens</h2>
 <p><img src="Zipf_Qualico2018_files/figure-revealjs/unnamed-chunk-6-1.png" width="864" /></p>
-</section><section id="conclusions" class="slide level2">
+</section>
+<section id="parameter-alpha-vs.-of-zipfian-types" class="slide level2">
+<h2>Parameter <span class="math inline">\(\alpha\)</span> vs. <span class="math inline">\(\%\)</span> of Zipfian types</h2>
+<p><img src="Zipf_Qualico2018_files/figure-revealjs/unnamed-chunk-7-1.png" width="864" /></p>
+</section>
+<section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>
-</section><section id="thank-you" class="slide level2">
+<ul>
+<li>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</li>
+</ul>
+</section>
+<section id="thank-you" class="slide level2">
 <h2>Thank you!</h2>
 <ul>
 <li><a href="https://twitter.com/MaciejEder">@MaciejEder</a></li>
