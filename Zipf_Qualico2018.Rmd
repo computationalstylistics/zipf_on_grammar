@@ -1,7 +1,7 @@
 
 ---
 title: Zipf’s Law and Subsets of Lexis
-author: Maciej Eder, Rafał L. Górski, Joanna Byszuk
+author: 8ł L. Górski, Joanna Byszuk
 date: July 5, 2018
 output:
   rmdshower::shower_presentation:
@@ -30,10 +30,7 @@ final_models_gramm2 = final_models
 load("data/zipf_models_subst.Rdata")
 final_models_subst = final_models
 
-
-
 a = read.csv("data/zipf_kategorie_model_parameters_duże_wszystkie.xlsx - zipf_kategorie_model_parameters.csv")
-
 
 my.blue = rgb(0.15, 0.45, 0.96)
 my.green = rgb(0.15, 0.85, 0.27, 0.7)
@@ -43,18 +40,33 @@ my.orange = rgb(1,0.5,0.2,0.6)
 my.teal = rgb(0, 0.5, 0.5, 0.7)  #### or: my.teal = rgb(0.24, 0.65, 0.75, 0.7)
 my.violet = rgb(0.75, 0.25, 0.82, 0.7)
 
-opts_chunk$set(cache=TRUE)
+opts_chunk$set(cache = TRUE)
 ```
 
 
 
-# Zipf’s law and subsets of lexis
-Maciej Eder, Rafał L. Górski, Joanna Byszuk
-![IJP-logo](img/logo_ijp_1.png)
-Wrocław, 5th July 2018.
 
 
-## Zipf's law observed for language
+## { .white }
+
+<p class="black" style="font-size: 240%; margin-bottom: 0.5em; margin-top: 0.5em;">
+Zipf’s Law and Subsets of Lexis</p>
+<p class="black" style="font-size: 120%; margin-bottom: 1em"> 
+Maciej Eder, Rafał L. Górski, Joanna Byszuk</p>
+<p class="black" style="font-size: 80%; margin-bottom: 0.5em;">
+Institute of Polish Language (Polish Academy of Sciences)</p>
+<p><img src="img/logo_ijp_1.png" width="200px"></p>
+<p class="black" style="font-size: 100%; margin-top: 4em;">
+Qualico 2018, Wrocław, 5th July 2018
+</p>
+
+
+
+
+
+
+
+## Zipf's law and language
 <!-- 
 * Zauważono, że język jest zipfowski
     * Ale co to znaczy “język”?
@@ -73,7 +85,7 @@ Piantadosi (2015) -->
 
 
 
-
+  
 
 ## 
 
@@ -84,7 +96,7 @@ Piantadosi (2015) -->
 
 
 
-## Zipf’s Law: an example
+## Zipf’s Law on a log-log scale
 
 ![word_unigrams](img/jeden_count.png){width=800px}
 
@@ -103,22 +115,41 @@ Piantadosi (2015) -->
 
 
 
-
-
 ## Dataset
   
 * The balanced version of the National Corpus of Polish 
   * 300 mln segments, i.e. roughly 250 mln words.
-* The POS tags in Polish are very granular. 
-* However, there are two “hyper POS-tags”:
+* The POS tags and lemmata taken as they are. 
+
+
+
+
+
+
+## Categories
+
+* Very granular parts of speech in the National Corpus of Polish.
+  * e.g. _subst:sg:nom:m1_, _adj:sg:nom:n:pos_, etc. 
+* For that reason, we split the tags:
+  * the proper POS: _subst_, _adj_, _fin_, _prep_, ...
+  * the number: _sg_, _pl_
+  * the case: _nom_, _gen_, _dat_, ...
+  * the person: _1st_, _2nd_, _3rd_ (not included in a tag)
+* Independently, we tested POS-tag n-grams
+
+
+<!-- * However, there are two “hyper POS-tages”:
   * _Verb_: all traditional verbal classes
-  * _Noun_: nouns, gerunds, and pronouns
+  * _Noun_: nouns, gerunds, and pronouns -->
+
+<!-- a POS pcon - is one of 4 Polish participles, a rule of thumb: a Part of Speech is a class, which shares exactly the same set of “Grammatical classes used in the National Corpus of Polish are more precisely delimited and, overall, finer-grained than traditional parts of speech. The classes assumed here are based on the notion of flexeme, narrower than the notion of lexeme. As a rule of thumb: a grammatical class is an entity, which shares a same set of inflecting categories, eg. since present-tense verbs bear person, but not gender and past-tense verbs vice-versa, they are distinct parts of speech-->
 
 
 
 
 
-## First observations: _sg_ vs. _pl_
+
+## First observations: _singular_ vs. _plural_
 
 ![singular_plural](img/sing_plur.png){width=800px}
 
@@ -126,7 +157,8 @@ Piantadosi (2015) -->
 
 
 
-## First observations: _1st_, _2nd_, _3rd_ person
+
+## First observations: _1st_, _2nd_, _3rd person_
 
 ![1st_2nd_person](img/1os_2os.png){width=800px}
 
@@ -152,7 +184,6 @@ Piantadosi (2015) -->
 
 
 
-
 ## Modeling a power law distribution
 
 ``` {r echo = FALSE, message = FALSE, include = FALSE}
@@ -161,13 +192,13 @@ var_rank = c(1:100)
 ```
 
 
-Maybe a well-known linear regression:
+* Since linear regression is simple to apply:
 
 ``` {r echo = TRUE, message = FALSE}
 model = lm( var_frequency ~ var_rank )
 ```
 
-could be applied to a log-transformed dataset?
+* Maybe it could be applied to a log-transformed dataset?
 
 ``` {r echo = TRUE, message = FALSE}
 model = lm( log(var_frequency) ~ log(var_rank) )
@@ -191,15 +222,15 @@ model = lm( log(var_frequency) ~ log(var_rank) )
 
 ## Fitting a power law
 
-Maximum likelihood estimators (MLEs) for continuous datasets
+* Maximum likelihood estimators (MLEs) for continuous datasets
 
 $$ \alpha = 1 + n \Big[ \sum_{i=1}^{n} \ln \frac{x_i}{x_{min}} \Big] ^{-1} $$
 
-MLEs for discrete datasets:
+* MLEs for discrete datasets:
 
 $$ \alpha \simeq 1 + n \Big[ \sum_{i=1}^{n} \ln \frac{x_i}{x_{min} - \frac{1}{2}} \Big] ^{-1} $$
 
-$x_{min}$ is estimated using the Kolmogorov-Smirnov (KS) statistic:
+* $x_{min}$ is estimated using the Kolmogorov-Smirnov (KS) statistic:
 
 $$ D = \max_{x \geq x_{min}} | S(x) - P(x) |  $$
 
@@ -209,7 +240,36 @@ $$ D = \max_{x \geq x_{min}} | S(x) - P(x) |  $$
 
 
 
-## Fitted parameters for the entire corpus
+## Fitted parameters: $x_{min}$ (cutoff)
+
+``` {r echo = FALSE, message = FALSE}
+
+plot(final_models_ngrams[[3]], type = "l", lty = 2, lwd = 1,
+      axes = FALSE, xlab = "rank", ylab = "frequency", main = "")
+
+# adding a model
+#lines(final_models_ngrams[[3]], col = my.red, lwd = 3)
+yticks = 10^rev(seq(0L,10L,2L)*-1)
+axis(side = 2, yticks, sapply(log10(yticks), function(i) as.expression(bquote(10^ .(i)))), las = 2 )
+xticks = 10^seq(0L,6L,1L)
+axis(side = 1, xticks, sapply(log10(xticks), function(i) as.expression(bquote(10^ .(i)))) )
+# adding a vertical line at the cutoff point
+cutoff = a[a[,1] == "jeden_control_count.txt",6]
+segments(cutoff, 10E-3, cutoff, 10E-6, col = my.blue, lwd = 5)
+
+#text(cutoff, 10E-3, expression(x_(min)), pos = 4)
+#text(cutoff, 10E-3, paste(substitute(paste(italic(x)[2], " = ")), r2.adj), pos = 4)
+
+text(cutoff, 10E-3, substitute(italic(x)[min] == 9), pos = 4)
+#text(100, 10E-2, substitute(alpha == 1.55), pos = 4)
+box()
+```
+
+
+
+
+
+## Fitted parameters: $\alpha$ (scaling)
 
 ``` {r echo = FALSE, message = FALSE}
 
@@ -236,20 +296,31 @@ box()
 
 
 
+
+
+
+
+
 ## Results
 
 * We fitted power law parameters for different categories:
     * grammatical classes (parts of speech)
     * inflection categories (cases, persons, numbers)
     * POS-tags combined in 2-grams, 3-grams, ..., 8-grams
-* We compared $\alpha$ (the slope) of the estimated models
+* We compared $\alpha$ (scaling) of the estimated models
 * We compared the proportion of observations above $x_{min}$
+
+
+## What is less Zipfian than general language?
+
+* Participles and subjects (nouns are also slightly different) – only 64–81% of their respective distributions.
+* Why? productivity of this type of forms might be the clue.
 
 
 
 ## Cases
 
-Stable, (un)expected Zipf results for both types and tokens
+Stable, (un)expected Zipf results for both types and tokens:
 
 | Case | token | type |
 |:----:|:-----:|:----:|
@@ -258,8 +329,8 @@ Stable, (un)expected Zipf results for both types and tokens
 | dat  | 93%   | 7%   |
 | loc  | 91%   | 3.5% |
 | gen  | 88%   | 7%   |
-| inst | 75%   | 2.5  |
-| nom  | 65%   | 2.5  |
+| inst | 75%   | 2.5%  |
+| nom  | 65%   | 2.5%  |
 
 
 
@@ -267,7 +338,7 @@ Stable, (un)expected Zipf results for both types and tokens
 
 
 
-## Parameter $\alpha$ vs. % of Zipfian tokens
+## Parameter $\alpha$ vs. $\sqrt{\%}$ of Zipfian tokens
 
 ``` {r echo = FALSE, message = FALSE}
 plot(a[,3] ~ sqrt(a[,13]), ylab = expression(alpha), xlab = "sqrt(% of Zipfian tokens)", type="n")
@@ -281,7 +352,9 @@ legend("bottomright", bty = "n", legend = paste(expression(R^2), "(adjusted) =",
 
 
 
-## Parameter $\alpha$ vs. % of Zipfian types
+
+
+## Parameter $\alpha$ vs. $\%$ of Zipfian types
 
 ``` {r echo = FALSE, message = FALSE}
 plot(a[,3] ~ c(100-a[,11]), ylab = expression(alpha), xlab = "% of Zipfian types", type="n")
@@ -301,6 +374,8 @@ legend("bottomleft", bty = "n", legend = paste(expression(R^2), "(adjusted) =", 
 
 
 ## Conclusions
+
+* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
